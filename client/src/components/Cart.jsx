@@ -62,7 +62,7 @@ const Cart = forwardRef(({ tableId, onOrderComplete }, ref) => {
     const fetchTaxes = async () => {
         try {
             setLoading(true);
-            const response = await axios.get('http://localhost:5000/api/taxes');
+            const response = await axios.get('http://3.109.143.125/api/taxes');
             setTaxes(response.data);
             setError(null);
         } catch (err) {
@@ -138,11 +138,11 @@ const Cart = forwardRef(({ tableId, onOrderComplete }, ref) => {
 
             console.log('Cart: Sending order data:', orderData);
 
-            const response = await axios.post('http://localhost:5000/api/orders', orderData);
+            const response = await axios.post('http://3.109.143.125/api/orders', orderData);
             console.log('Cart: Order created successfully:', response.data);
 
             // Generate bill
-            const billResponse = await axios.get(`http://localhost:5000/api/orders/${response.data.id}/bill`);
+            const billResponse = await axios.get(`http://3.109.143.125/api/orders/${response.data.id}/bill`);
             setBillData(billResponse.data);
             setShowBill(true);
 
@@ -271,7 +271,7 @@ const Cart = forwardRef(({ tableId, onOrderComplete }, ref) => {
             generatePDF();
             
             // If PDF generation was successful, proceed with closing the bill
-            await axios.patch(`http://localhost:5000/api/tables/${tableId}/status`, {
+            await axios.patch(`http://3.109.143.125/api/tables/${tableId}/status`, {
                 status: 'available'
             });
             
