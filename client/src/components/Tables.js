@@ -17,7 +17,7 @@ const Tables = ({ onTableSelect, selectedTableId }) => {
 
     const fetchTables = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/tables', {
+            const response = await axios.get('http://3.109.143.125/api/tables', {
                 headers: {
                     'Cache-Control': 'no-cache',
                     'Pragma': 'no-cache'
