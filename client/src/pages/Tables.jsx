@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -13,7 +14,7 @@ const TableManagementPage = () => {
 
   const fetchTables = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/tables');
+      const response = await axios.get('http://3.109.143.125/api/tables');
       setTables(response.data);
       setError(null);
     } catch (error) {
@@ -25,7 +26,7 @@ const TableManagementPage = () => {
   const handleAddTable = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/tables', {
+      await axios.post('http://3.109.143.125/api/tables', {
         table_number: newTable.table_number,
         capacity: parseInt(newTable.capacity)
       });
@@ -41,7 +42,7 @@ const TableManagementPage = () => {
   const handleUpdateTable = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/tables/${editingTable.id}`, editingTable);
+      await axios.put(`http://3.109.143.125/api/tables/${editingTable.id}`, editingTable);
       setEditingTable(null);
       fetchTables();
     } catch (error) {
@@ -53,7 +54,7 @@ const TableManagementPage = () => {
   const handleDeleteTable = async (tableId) => {
     if (window.confirm('Are you sure you want to delete this table?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/tables/${tableId}`);
+        await axios.delete(`http://3.109.143.125/api/tables/${tableId}`);
         fetchTables();
       } catch (error) {
         console.error('Error deleting table:', error);
@@ -64,7 +65,7 @@ const TableManagementPage = () => {
 
   const handleStatusChange = async (tableId, newStatus) => {
     try {
-      await axios.put(`http://localhost:5000/api/tables/${tableId}`, {
+      await axios.put(`http://3.109.143.125/api/tables/${tableId}`, {
         status: newStatus
       });
       fetchTables();
