@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -16,7 +17,7 @@ const Tables = ({ onTableSelect, selectedTableId }) => {
 
     const fetchTables = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/tables', {
+            const response = await axios.get('http://3.109.143.125/api/tables', {
                 headers: { 'Cache-Control': 'no-cache' }
             });
             setTables(response.data);
@@ -52,7 +53,7 @@ const Tables = ({ onTableSelect, selectedTableId }) => {
         
         try {
             if (table.id !== selectedTableId) {
-                await axios.patch(`http://localhost:5000/api/tables/${table.id}/status`, {
+                await axios.patch(`http://3.109.143.125/api/tables/${table.id}/status`, {
                     status: 'occupied'
                 });
                 onTableSelect(table);
@@ -67,7 +68,7 @@ const Tables = ({ onTableSelect, selectedTableId }) => {
     const resetTables = async () => {
         try {
             setRefreshing(true);
-            await axios.post('http://localhost:5000/api/tables/reset');
+            await axios.post('http://3.109.143.125/api/tables/reset');
             await fetchTables();
             setError(null);
         } catch (err) {
