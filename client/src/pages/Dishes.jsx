@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -20,8 +21,8 @@ const Dishes = () => {
   const fetchData = async () => {
     try {
       const [dishesRes, categoriesRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/dishes'),
-        axios.get('http://localhost:5000/api/categories')
+        axios.get('http://3.109.143.125/api/dishes'),
+        axios.get('http://3.109.143.125/api/categories')
       ]);
       setDishes(dishesRes.data);
       setCategories(categoriesRes.data);
@@ -33,7 +34,7 @@ const Dishes = () => {
   const handleAddDish = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/dishes', newDish);
+      await axios.post('http://3.109.143.125/api/dishes', newDish);
       setNewDish({
         name: '',
         category_id: '',
@@ -51,7 +52,7 @@ const Dishes = () => {
   const handleUpdateDish = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/dishes/${editingDish.id}`, editingDish);
+      await axios.put(`http://3.109.143.125/api/dishes/${editingDish.id}`, editingDish);
       setEditingDish(null);
       fetchData();
     } catch (error) {
@@ -63,7 +64,7 @@ const Dishes = () => {
   const handleDeleteDish = async (dishId) => {
     if (window.confirm('Are you sure you want to delete this dish?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/dishes/${dishId}`);
+        await axios.delete(`http://3.109.143.125/api/dishes/${dishId}`);
         fetchData();
       } catch (error) {
         console.error('Error deleting dish:', error);
@@ -74,7 +75,7 @@ const Dishes = () => {
 
   const toggleAvailability = async (dishId, currentStatus) => {
     try {
-      await axios.put(`http://localhost:5000/api/dishes/${dishId}`, {
+      await axios.put(`http://3.109.143.125/api/dishes/${dishId}`, {
         available: !currentStatus
       });
       fetchData();
