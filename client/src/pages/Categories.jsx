@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -12,7 +13,7 @@ const CategoryPage = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/categories');
+      const response = await axios.get('http://3.109.143.125/api/categories');
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -22,7 +23,7 @@ const CategoryPage = () => {
   const handleAddCategory = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/categories', newCategory);
+      await axios.post('http://3.109.143.125/api/categories', newCategory);
       setNewCategory({ name: '' });
       fetchCategories();
     } catch (error) {
@@ -34,7 +35,7 @@ const CategoryPage = () => {
   const handleUpdateCategory = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/categories/${editingCategory.id}`, editingCategory);
+      await axios.put(`http://3.109.143.125/api/categories/${editingCategory.id}`, editingCategory);
       setEditingCategory(null);
       fetchCategories();
     } catch (error) {
@@ -46,7 +47,7 @@ const CategoryPage = () => {
   const handleDeleteCategory = async (categoryId) => {
     if (window.confirm('Are you sure you want to delete this category?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/categories/${categoryId}`);
+        await axios.delete(`http://3.109.143.125/api/categories/${categoryId}`);
         fetchCategories();
       } catch (error) {
         console.error('Error deleting category:', error);
