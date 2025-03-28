@@ -12,8 +12,8 @@ const TakeAway = () => {
     const fetchData = async () => {
       try {
         const [categoriesRes, dishesRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/categories'),
-          axios.get('http://localhost:5000/api/dishes')
+          axios.get('http://3.109.143.125/api/categories'),
+          axios.get('http://3.109.143.125/api/dishes')
         ]);
         setCategories(categoriesRes.data);
         setDishes(dishesRes.data);
@@ -54,7 +54,7 @@ const TakeAway = () => {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/orders', {
+      await axios.post('http://3.109.143.125/api/orders', {
         customer_name: customerName,
         customer_phone: customerPhone,
         items: cart,
