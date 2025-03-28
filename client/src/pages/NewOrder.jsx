@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -18,9 +19,9 @@ const NewOrder = () => {
   const fetchData = async () => {
     try {
       const [tablesRes, categoriesRes, dishesRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/tables'),
-        axios.get('http://localhost:5000/api/categories'),
-        axios.get('http://localhost:5000/api/dishes')
+        axios.get('http://3.109.143.125/api/tables'),
+        axios.get('http://3.109.143.125/api/categories'),
+        axios.get('http://3.109.143.125/api/dishes')
       ]);
       setTables(tablesRes.data);
       setCategories(categoriesRes.data);
@@ -80,7 +81,7 @@ const NewOrder = () => {
         } : {})
       };
 
-      await axios.post('http://localhost:5000/api/orders', orderData);
+      await axios.post('http://3.109.143.125/api/orders', orderData);
       
       // Reset form
       setCart([]);
