@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-deployment
+  labels:
+    app: web-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: cars
+        image: chaitanyabaki/prod:frontend   # Replace with your image: <your-dockerhub-username>/<imagename>:tag
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
+          
